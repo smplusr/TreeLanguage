@@ -1,7 +1,7 @@
 #include "lang.h"
 
 
-void (*lambda[256][16]) ();
+void *(*lambda[256][24]) ();
 void *library[256];
 
 int Tokenize (char a[], char b[][256]) {
@@ -21,7 +21,7 @@ void *Parse (char a[], int p) {
 		a[i] = '\0'; 
 	} 
 
-	char b[16][256];
+	char b[24][256];
 	int c = Tokenize (a, b);
 
 	if (b[0][0] != '(') {
@@ -34,8 +34,16 @@ void *Parse (char a[], int p) {
 		lambda[p][i] = Parse (b[i], p+1);
 	}
 
-	for (int i = 0; i < c; i++)
-		if (library[b[i][0]]) lambda[p][i] (lambda[p]);
 	return lambda[p];
 }
-
+void *Run (void (***a)) {
+	if (!islib (a) && a > 256) {
+		for (int i = 0; a[i]; i++) {
+			if (islib (a[i])) {
+				void *(*f)() = (void (*)())a[i];
+				if (f) if (f (a) == -1) return -1;
+			}
+			if (Run (a[i]) == -1) return;
+		}
+	}
+}

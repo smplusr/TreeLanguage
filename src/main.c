@@ -21,6 +21,7 @@ int main (int argc, char *argv[]) {
 					Read (s, argv[i+1]);
 					Remove (s, "\n	"); 
 					Parse (s, 0);
+					Run (lambda[0]);
 					break;
 				case 'd':
 					DEBUG_PrintLambda (lambda);
@@ -30,5 +31,4 @@ int main (int argc, char *argv[]) {
 			}
 		}
 	}
-
 }

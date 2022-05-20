@@ -1,9 +1,10 @@
 #pragma once
 
 #include "lib.h"
+#include "ext.h"
 
 
-extern void (*lambda[256][16]) ();
+extern void *(*lambda[256][24]) ();
 extern void *library[256];
 
 int Tokenize (char a[], char b[][256]);
