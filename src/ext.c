@@ -7,7 +7,7 @@ void *cons (void **a) {
 		if (islib (a[i])) { void *(*f)() = (void (*)())a[i]; return f (a); }
 		return cons (a[i]);
 	}
-}	// Returns nearest non-pointer value
+}
 
 void *islib (void (**a)) {
 	for (int i = 0; i < 256; i++)
