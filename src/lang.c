@@ -4,7 +4,7 @@
 void *(*lambda[256][24]) ();
 void *library[256];
 
-int Tokenize (char a[], char b[][256]) {
+int Lexe (char a[], char b[][256]) {
 	int i = 0;
 	for (int j = 0, k = 0; *a; *a++, j++) {
 		b[i][j] = *a;
@@ -22,7 +22,7 @@ void *Parse (char a[], int p) {
 	} 
 
 	char b[24][256];
-	int c = Tokenize (a, b);
+	int c = Lexe (a, b);
 
 	if (b[0][0] != '(') {
 		if (!library[b[0][0]]) return b[0][0];	// TODO : Need recast (compiler warning) | Does not work : (*(void**)b[0]);

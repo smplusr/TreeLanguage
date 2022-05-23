@@ -1,18 +1,25 @@
-SOURCE	= $(shell find src/ -name *.c)
-SCRIPT	= $(shell find bin/ -name *.t)
+LDFLAGS = -L. $(LIBRARY) -Wl,-rpath='.' 
+CFLAGS	= -O2 -w -fPIC -no-pie
+
+
 TARGET	= tl.elf
+LIBRARY	= library.so
 
-CC	= gcc -O2 -fpic -no-pie -w -o
 
 
-all:	$(TARGET) run
+all:	clean $(LIBRARY) $(TARGET)
+	mv $(LIBRARY) $(TARGET) bin/
 
-$(TARGET):	$(SOURCE)
-	$(CC) $@ $^
-	mv $@ bin/
+clean:	$(shell find -name *.so) $(shell find -name *.elf)
+	$(RM) $^
 
-clean:	$(JUNK)
-	$(RM) $<
 
-run:	$(TARGET)
-	./bin/$< -f $(SCRIPT) -d
+
+%.so:	$(shell find lib/ -name *.c)
+	$(CC) $(CFLAGS) -fPIC -shared -o $@ $^
+
+
+%.elf:	$(shell find src/ -name *.c)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+

@@ -8,6 +8,7 @@ void *cons (void **a) {
 		return cons (a[i]);
 	}
 }
+
 void *islib (void (**a)) {
 	for (int i = 0; i < 256; i++)
 		if (a == library[i]) return 1;
