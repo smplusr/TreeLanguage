@@ -36,7 +36,7 @@ void *Parse (char a[], int p) {
 
 	return lambda[p];
 }
-void *Run (void (***a)) {
+void *Eval (void (***a)) {
 	if (!islib (a) && a > 256) {
 		for (int i = 0; a[i]; i++) {
 			if (islib (a[i])) {
