@@ -17,7 +17,6 @@ void LoadLib () {
 
 	library['%'] = command;
 
-	library['#'] = cliout;
 	library['@'] = fileout;
 	library[']'] = filesave;
 	library['['] = fileload;

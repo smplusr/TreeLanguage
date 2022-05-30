@@ -1,5 +1,5 @@
 LDFLAGS = -L. $(LIBRARY) -Wl,-rpath='.' 
-CFLAGS	= -O2 -w -fPIC -no-pie
+CFLAGS	= -Og -fPIC -no-pie
 
 
 TARGET	= tl.elf
@@ -8,7 +8,7 @@ LIBRARY	= library.so
 
 
 all:	clean $(LIBRARY) $(TARGET)
-	mv $(LIBRARY) $(TARGET) bin/
+	mv *.so *.elf bin/
 
 clean:	$(shell find -name *.so) $(shell find -name *.elf)
 	$(RM) $^

@@ -3,6 +3,8 @@
 #include "lang.h"
 
 
+extern void LoadLib ();
+
 int main (int argc, char *argv[]) {
 	LoadLib ();
 	char s[4096];

@@ -11,18 +11,17 @@
 extern void *memory[256];
 
 void loop (void (**a));
-void *test (void (***a));
+int test (void (***a));
 void *stop (void (****a));
 
 void *memoryget (void (***a));
 void memoryset (void (****a));
-void *intraw (void (***a));
+int intraw (void (***a));
 
-void *add (void (***a));
+int add (void (***a));
 
 void command (void (****a));
 
-void cliout (void (***a));
 void fileout (void (****a));
 void filesave (void (***a));
 void fileload (void (***a));
